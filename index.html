@@ -1,0 +1,249 @@
+<html>
+<head>
+<title>BullsNCows - Buzypi</title>
+
+<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:200,500' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="master.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+</head>
+<body id="bodyc">
+
+<!-- ##### Main Copy ##### -->
+<div id="header">
+    <div id="logo" class=""><a href="http://jnaapti.com/" style="text-decoration:none">jnaapti</a></div>
+</div>
+<div id="main-copy" class="container">
+    <ul id="tabs" class="nav nav-tabs">
+        <li class="active"><a href="#play">Play</a></li>
+        <li><a href="#help">Help</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="play">
+            <h4 >Enter a number between 0 to 9999 to get started</h4>
+            <table id="tableId" border="0" width="100%" class="table table-bordered table-striped table table-hover">
+            <thead >
+                <tr id="tr1">
+                    <th>You entered</th>
+                    <th>Bulls  <img src=http://sweetclipart.com/multisite/sweetclipart/files/bull.png width=32px height=32px></img></th>
+                    <th>Cows   <img src="http://images.clipartpanda.com/establishment-clipart-cute-black-and-white-cow-free-clip-art-7510x4240.jpg" width=32px height=32px ></img></th>
+                </tr>
+            </thead>
+            </table>
+            <div class="row">
+                <div class="col-sm-5"><input type="number" min="0" max="9999" class="form-control" id="enteredNumber" placeholder="Enter number" /></div>
+                <div class="col-sm-1"><button id="checkb" class="btn btn-primary">Check</button></div>
+                <div class="col-sm-1"><button id="giveupb" class="btn btn-danger" >Give up :(</button></div>
+                <div class="col-sm-2">Total tries: 0</div>
+            </div>
+        </div> <!-- End of #play -->
+        <div class="tab-pane" id="help">
+            <div class="row">
+                <div class="col-sm-4">
+                <ul>
+                    <li>The computer selects a random number between 1 and 9999. Your
+                    aim is to guess that number in the least number of steps.</li>
+                    <li>Enter a number between and including 1 and 9999.</li>
+
+                    <li>The computer verifies the number and displays the result in
+                    terms of bulls and cows.</li>
+                    <li>A <b>Bull </b>indicates that the digit in your number and the
+                    computer's number are in the correct position.</li>
+                    <li>A <b>Cow </b>indicates that the digit is present in the
+                    number, but is not in the right position.</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <b>Examples:</b><br>
+
+                Computer's number is 2347.<br>
+                You enter 1267.<br>
+                The digits 2 and 7 are present in the both the numbers. 7 is in
+                the exact position. So, it is a bull. 2 is not in the same
+                position... so it is a cow.<br>
+                <br>
+                Computer's number is 5368.<br>
+                You enter 2358.<br>
+
+                3, 8 are in the same position - 2 bulls.<br>
+                5 is in a different position - 1 cow.<br>
+                <br>
+                Computer's number is 2268.<br>
+                You enter 1328.<br>
+                8 is in the same position - 1 bull.<br>
+
+                2 is in a different position - 1 cow.<br>
+                <br>
+                You enter 2328.<br>
+                2 (1st position) and 8 - 2 bulls.<br>
+                2 (3rd position) - 1 cow.<br>
+                <br>
+                Computer's number - 0023.<br>
+
+                You enter 123.<br>
+                3 bulls and 0 cows.<br>
+                <br>
+                You enter 230.<br>
+                1 bull and 3 cows.<br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">brought to you by - (c) <a href="http://buzypi.in/">buzypi.in</a></div>
+
+<button id="buttonM" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">The Tiger ate the Cows and Bulls</h4>
+      </div>
+      <div class="modal-body">
+        <div id="tiger" title="The Tiger ate the Cattle">
+            <img src=http://www.signspecialist.com/decals/mascot2/images/Tiger%20Head%203.jpg width=200px height=200px></img>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $("#buttonM").css("display","none");
+    $( document ).ready(function() {
+        $('#tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        var triesnum=0;
+        var enteredN;
+        randomNo = Math.floor(Math.random()*10001);
+        tries = [];
+        console.log(randomNo)
+        function alreadyEntered() {
+            enteredN = document.getElementById('enteredNumber').value;
+            var numFound = false;
+            _.each(tries, function(item) {
+                if(item.num === enteredN) {
+                    numFound = true;
+                }
+            });
+            return numFound;
+        };
+
+        function verifyBullsNCows(){
+            var bulls = 0, cows = 0;
+            var tempRandomNumber = randomNo;
+            var tempEnteredNumber = enteredN;
+
+            //Checking for bulls
+            for(var i=0;i<4;i++){
+                if(tempRandomNumber % 10 == tempEnteredNumber % 10) {
+                    bulls++;
+                    if(bulls == 4) {
+                        alert("Bingo!");
+                        document.location.reload();
+                    }
+                }
+                tempRandomNumber = parseInt(tempRandomNumber / 10);
+                tempEnteredNumber = parseInt(tempEnteredNumber / 10);
+            }
+            //Checking for cows
+            var tempEnteredNumber = enteredN;
+            var tempRandomNumber = randomNo;
+            var randDigits = [], enteredDigits = [];
+            for(var i = 0; i < 4; i++){
+                enteredDigits.push(tempEnteredNumber % 10);
+                randDigits.push(tempRandomNumber % 10);
+                tempEnteredNumber = parseInt(tempEnteredNumber / 10);
+                tempRandomNumber = parseInt(tempRandomNumber / 10);
+            }
+            for(var i = 0; i < 4; i++) {
+                var digit = enteredDigits[i];
+                var position = randDigits.indexOf(digit);
+                if(position >= 0) {
+                    randDigits[position] = null;
+                    cows++;
+                }
+            }
+            cows = cows - bulls;
+            sp= $('<span>');
+            for (var i = 0; i < bulls; i++) {
+                sp.append('<img src=http://sweetclipart.com/multisite/sweetclipart/files/bull.png width=32px height=32px>')
+
+            };
+            sp1= $('<span>');
+            for (var i = 0; i < cows; i++) {
+
+            sp1.append('<img src="http://images.clipartpanda.com/establishment-clipart-cute-black-and-white-cow-free-clip-art-7510x4240.jpg" width=32px height=32px >')
+                
+            };
+            $('<tr>')
+                .append($('<td>').text(enteredN))
+                .append($('<td>').append(sp))
+                .append($('<td>').append(sp1))
+                .appendTo($('#tableId'));
+            var sumthing= "Total Tries :"+triesnum;
+            $('.col-sm-2').text(sumthing)
+        };
+
+        function verifyF() {
+            triesnum++;
+            if(alreadyEntered()) {
+                enteredNumber = null;
+                return;
+            }
+            if(enteredN > 0 && enteredN < 10000){
+                verifyBullsNCows();
+                $('#enteredNumber').val("");
+            }
+            else{
+                $('#enteredNumber').val("");
+                $("#buttonM").trigger("click");
+		var audioElement = document.createElement('audio');
+        	audioElement.setAttribute('src', 'roar.mp3');
+        	audioElement.setAttribute('autoplay', 'autoplay');
+		audioElement.play();
+
+
+            }
+            enteredN= null;
+        };
+        $('#checkb').bind('click', verifyF );
+        function giveUpF() {
+            var msg = "Click OK to give up, Cancel to continue trying.";
+            if(confirm(msg)) {
+                alert('The number was '+ randomNo);
+                document.location.reload();
+            }
+
+            else
+                return;
+        };
+
+        this.testKey = function(evt) {
+            if(evt.keyCode === 13) {
+                this.verify();
+            }
+        };
+        $('#giveupb').bind('click', giveUpF );
+
+    });
+
+
+
+</script>     
+
+</body>
+</html>
