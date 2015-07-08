@@ -8,7 +8,6 @@ $( document ).ready(function() {
     var enteredN;
     randomNo = Math.floor(Math.random()*10001);
     tries = [];
-    console.log(randomNo)
     function alreadyEntered() {
         enteredN = document.getElementById('enteredNumber').value;
         var numFound = false;
