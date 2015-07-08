@@ -57,11 +57,11 @@ $( document ).ready(function() {
         cows = cows - bulls;
         sp= $('<span>');
         for (var i = 0; i < bulls; i++) {
-            sp.append('<img src=http://sweetclipart.com/multisite/sweetclipart/files/bull.png width=32px height=32px>')
+            sp.append('<img src="bulls.png" width=32px height=32px>')
         };
         sp1= $('<span>');
         for (var i = 0; i < cows; i++) {
-            sp1.append('<img src="http://images.clipartpanda.com/establishment-clipart-cute-black-and-white-cow-free-clip-art-7510x4240.jpg" width=32px height=32px >');    
+            sp1.append('<img src="cow.jpg" width=32px height=32px >');    
         };
         $('<tr>')
             .append($('<td>').text(enteredN))
