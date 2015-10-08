@@ -4,8 +4,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:200,500' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="./static/css/master.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="./dist/css/bullsncowsplus.min.css">
 </head>
 <body id="bodyc">
 
@@ -22,7 +21,7 @@
         <div class="tab-pane active" id="play">
             <h4 >Enter a number between 0 to 9999 to get started</h4>
             <table id="tableId" border="0" width="100%" class="table table-bordered table-striped table table-hover">
-            <thead >
+            <thead>
                 <tr id="tr1">
                     <th>You entered</th>
                     <th>Bulls  <img src="./static/assets/image/bulls.png" width=32px height=32px></img></th>
@@ -30,11 +29,11 @@
                 </tr>
             </thead>
             </table>
-            <div class="row">
-                <div class="col-sm-5"><input type="number" min="0" max="9999" class="form-control" id="enteredNumber" placeholder="Enter number" /></div>
-                <div class="col-sm-1"><button id="checkb" class="btn btn-primary">Check</button></div>
-                <div class="col-sm-1"><button id="giveupb" class="btn btn-danger" >Give up :(</button></div>
-                <div class="col-sm-2">Total tries: 0</div>
+            <div class="row container">
+                <div class="col-sm-8 col-xs-12"><input type="number" min="0" max="9999" class="form-control" id="enteredNumber" placeholder="Enter number" /></div>
+                <div class="col-sm-1 col-xs-4"><button id="checkb" class="btn btn-primary">Check</button></div>
+                <div class="col-sm-1 col-xs-4"><button id="giveupb" class="btn btn-danger" >Give up :(</button></div>
+                <div id="tries" class="col-sm-2 col-xs-4">Total Tries: 0</div>
             </div>
         </div> <!-- End of #play -->
         <div class="tab-pane" id="help">
@@ -102,7 +101,7 @@
       </div>
       <div class="modal-body">
         <div id="tiger" title="The Tiger ate the Cattle">
-            <img src="TigerHead.jpg" width=200px height=200px></img>
+            <img src="./static/assets/image/TigerHead.jpg" width=200px height=200px></img>
         </div>
       </div>
       <div class="modal-footer">
@@ -112,8 +111,8 @@
   </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="./static/js/main.js"></script>
+<script src="./dist/js/bullsncowsplus.min.js"></script>
 </body>
 </html>

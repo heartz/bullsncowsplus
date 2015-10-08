@@ -6,8 +6,9 @@ $( document ).ready(function() {
     });
     var triesnum=0;
     var enteredN;
-    randomNo = Math.floor(Math.random()*10001);
-    tries = [];
+    var randomNo = Math.floor(Math.random()*10001);
+    console.log(randomNo);
+    var tries = [];
     function alreadyEntered() {
         enteredN = document.getElementById('enteredNumber').value;
         var numFound = false;
@@ -17,7 +18,7 @@ $( document ).ready(function() {
             }
         });
         return numFound;
-    };
+    }
     function verifyBullsNCows(){
         var bulls = 0, cows = 0;
         var tempRandomNumber = randomNo;
@@ -36,17 +37,17 @@ $( document ).ready(function() {
             tempEnteredNumber = parseInt(tempEnteredNumber / 10);
         }
         //Checking for cows
-        var tempEnteredNumber = enteredN;
-        var tempRandomNumber = randomNo;
+        tempEnteredNumber = enteredN;
+        tempRandomNumber = randomNo;
         var randDigits = [], enteredDigits = [];
-        for(var i = 0; i < 4; i++){
+        for(var m = 0; m < 4; m++){
             enteredDigits.push(tempEnteredNumber % 10);
             randDigits.push(tempRandomNumber % 10);
             tempEnteredNumber = parseInt(tempEnteredNumber / 10);
             tempRandomNumber = parseInt(tempRandomNumber / 10);
         }
-        for(var i = 0; i < 4; i++) {
-            var digit = enteredDigits[i];
+        for(var j = 0; j < 4; j++) {
+            var digit = enteredDigits[j];
             var position = randDigits.indexOf(digit);
             if(position >= 0) {
                 randDigits[position] = null;
@@ -54,22 +55,29 @@ $( document ).ready(function() {
             }
         }
         cows = cows - bulls;
-        sp= $('<span>');
-        for (var i = 0; i < bulls; i++) {
-            sp.append('<img src="bulls.png" width=32px height=32px>')
-        };
+        sp = $('<span>');
+        for (i = 0; i < bulls; i++) {
+            sp.append('<img src="./static/assets/image/bulls.png" width=32px height=32px>');
+        }
+        sp1 = $('<span>');
+        for (i = 0; i < cows; i++) {
+            sp1.append('<img src="./static/assets/image/cow.jpg" width=32px height=32px >');    
+        }
+        for (i = 0; i < bulls; i++) {
+            sp.append('<img src="./static/assets/image/bulls.png" width=32px height=32px>');
+        }
         sp1= $('<span>');
-        for (var i = 0; i < cows; i++) {
-            sp1.append('<img src="cow.jpg" width=32px height=32px >');    
-        };
+        for (i = 0; i < cows; i++) {
+            sp1.append('<img src="./static/assets/image/cow.jpg" width=32px height=32px >');    
+        }
         $('<tr>')
             .append($('<td>').text(enteredN))
             .append($('<td>').append(sp))
             .append($('<td>').append(sp1))
             .appendTo($('#tableId'));
         var sumthing= "Total Tries :"+triesnum;
-        $('.col-sm-2').text(sumthing)
-    };
+        $('#tries').textContent=sumthing;
+    }
 
     function verifyF() {
         triesnum++;
@@ -85,12 +93,12 @@ $( document ).ready(function() {
             $('#enteredNumber').val("");
             $("#buttonM").trigger("click");
             var audioElement = document.createElement('audio');
-        	audioElement.setAttribute('src', 'roar.mp3');
+        	audioElement.setAttribute('src', './static/assets/sound/roar.mp3');
         	audioElement.setAttribute('autoplay', 'autoplay');
             audioElement.play();
         }
         enteredN= null;
-    };
+    }
     $('#checkb').bind('click', verifyF );
     function giveUpF() {
         var msg = "Click OK to give up, Cancel to continue trying.";
@@ -100,7 +108,7 @@ $( document ).ready(function() {
         }
         else
             return;
-    };
+    }
     this.testKey = function(evt) {
         if(evt.keyCode === 13) {
             this.verify();
