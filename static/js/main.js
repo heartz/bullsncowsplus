@@ -7,7 +7,6 @@ $( document ).ready(function() {
     var triesnum=0;
     var enteredN;
     var randomNo = Math.floor(Math.random()*10001);
-    console.log(randomNo);
     var tries = [];
     function alreadyEntered() {
         enteredN = document.getElementById('enteredNumber').value;
